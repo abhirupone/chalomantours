@@ -4,8 +4,8 @@ import { DESTINATIONS, TESTIMONIALS, SERVICES, HERO_SLIDES } from '../constants'
 import DestinationCard from '../components/DestinationCard';
 import TestimonialCard from '../components/TestimonialCard';
 import AnimatedWrapper from '../components/AnimatedWrapper';
-import AITripPlanner from '../components/AITripPlanner';
 import DestinationModal from '../components/DestinationModal';
+import { ChevronLeftIcon, ChevronRightIcon } from '../components/Icons';
 import type { Service, Destination } from '../types';
 
 const ServiceCard: React.FC<{ service: Service }> = ({ service }) => (
@@ -25,6 +25,7 @@ const ServiceCard: React.FC<{ service: Service }> = ({ service }) => (
 const Home: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [selectedDestination, setSelectedDestination] = useState<Destination | null>(null);
+  const [destinationsSlide, setDestinationsSlide] = useState(0);
 
   useEffect(() => {
     const slideInterval = setInterval(() => {
@@ -42,6 +43,23 @@ const Home: React.FC = () => {
 
   const closeModal = () => {
     setSelectedDestination(null);
+  };
+
+  // Carousel navigation functions
+  const nextDestinations = () => {
+    setDestinationsSlide(prev => 
+      prev >= DESTINATIONS.length - 3 ? 0 : prev + 1
+    );
+  };
+
+  const prevDestinations = () => {
+    setDestinationsSlide(prev => 
+      prev <= 0 ? DESTINATIONS.length - 3 : prev - 1
+    );
+  };
+
+  const goToDestinationsSlide = (index: number) => {
+    setDestinationsSlide(index);
   };
 
   return (
@@ -94,12 +112,57 @@ const Home: React.FC = () => {
               Discover India's incredible diversity - from the majestic Taj Mahal to serene Kerala backwaters. Your Indian adventure awaits.
             </p>
           </AnimatedWrapper>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {DESTINATIONS.slice(0, 3).map((dest, index) => (
-              <AnimatedWrapper key={dest.id} delay={`${index * 150}ms`}>
-                <DestinationCard destination={dest} onCardClick={openModal} />
-              </AnimatedWrapper>
-            ))}
+
+          {/* Carousel Container */}
+          <div className="relative">
+            {/* Navigation Arrows */}
+            <button
+              onClick={prevDestinations}
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-primary/80 hover:bg-primary text-light p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+              aria-label="Previous destinations"
+            >
+              <ChevronLeftIcon className="h-6 w-6" />
+            </button>
+
+            <button
+              onClick={nextDestinations}
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-primary/80 hover:bg-primary text-light p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+              aria-label="Next destinations"
+            >
+              <ChevronRightIcon className="h-6 w-6" />
+            </button>
+
+            {/* Carousel Content */}
+            <div className="overflow-hidden">
+              <div
+                className="flex transition-transform duration-500 ease-in-out"
+                style={{ transform: `translateX(-${destinationsSlide * (100 / 3)}%)` }}
+              >
+                {DESTINATIONS.map((dest, index) => (
+                  <div key={dest.id} className="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 px-4">
+                    <AnimatedWrapper delay={`${index * 100}ms`}>
+                      <DestinationCard destination={dest} onCardClick={openModal} />
+                    </AnimatedWrapper>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Carousel Dots */}
+            <div className="flex justify-center gap-2 mt-8">
+              {Array.from({ length: Math.ceil(DESTINATIONS.length / 3) }, (_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToDestinationsSlide(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    Math.floor(destinationsSlide / 3) === index
+                      ? 'bg-highlight scale-125'
+                      : 'bg-accent hover:bg-highlight/50'
+                  }`}
+                  aria-label={`Go to destinations slide ${index + 1}`}
+                />
+              ))}
+            </div>
           </div>
         </section>
 
@@ -122,9 +185,6 @@ const Home: React.FC = () => {
           </div>
         </section>
 
-        {/* AI Trip Planner */}
-        <AITripPlanner onCardClick={openModal} />
-
         {/* Testimonials */}
         <section className="container mx-auto px-6">
           <AnimatedWrapper>
@@ -143,7 +203,7 @@ const Home: React.FC = () => {
         </section>
 
         {/* Call to Action */}
-        <section className="relative py-24 bg-cover bg-center bg-fixed" style={{backgroundImage: "url('https://picsum.photos/seed/cta-bg/1920/1080')"}}>
+        <section className="relative py-24 bg-cover bg-center bg-fixed" style={{backgroundImage: "url('https://picsum.photos/seed/india-landscape-sunset/1920/1080')"}}>
           <div className="absolute inset-0 bg-primary/70"></div>
           <div className="relative container mx-auto px-6 text-center">
               <AnimatedWrapper>

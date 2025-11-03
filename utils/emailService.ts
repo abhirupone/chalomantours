@@ -24,7 +24,7 @@ export const sendContactEmail = async (data: EmailData): Promise<boolean> => {
         subject: data.subject || 'Contact Form Submission',
         message: data.message,
         _replyto: data.email,
-        _subject: `Chaloman Tours Contact: ${data.subject || 'New Message'}`,
+        _subject: `Chaloman Tours and Travels Contact: ${data.subject || 'New Message'}`,
       }),
     });
 
@@ -47,7 +47,7 @@ export const sendEmailViaWebhook = async (data: EmailData): Promise<boolean> => 
       body: JSON.stringify({
         to: 'abhirup.karmakar00@gmail.com',
         from: data.email,
-        subject: data.subject || 'Contact Form Submission from Chaloman Tours',
+        subject: data.subject || 'Contact Form Submission from Chaloman Tours and Travels',
         html: `
           <h3>New Contact Form Submission</h3>
           <p><strong>Name:</strong> ${data.name}</p>

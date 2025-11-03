@@ -13,8 +13,12 @@ const Footer: React.FC = () => {
           {/* Brand */}
           <div className="col-span-1 md:col-span-1">
              <NavLink to="/" className="flex items-center gap-2 text-2xl font-bold font-serif text-light">
-                <WorldIcon className="h-8 w-8 text-highlight" />
-                Chaloman
+                <img 
+                  src="/images/Untitled.png" 
+                  alt="Chaloman Tours and Travels Logo" 
+                  className="h-8 w-auto"
+                />
+                Chaloman Tours and Travels
             </NavLink>
             <p className="mt-4 text-accent">Crafting unforgettable journeys, one adventure at a time.</p>
           </div>

@@ -44,7 +44,7 @@ const Destinations: React.FC = () => {
     <>
       <div className="bg-primary min-h-screen">
         {/* Page Header */}
-        <section className="relative py-24 md:py-32 bg-cover bg-center" style={{backgroundImage: "url('https://picsum.photos/seed/dest-header/1920/1080')"}}>
+        <section className="relative py-24 md:py-32 bg-cover bg-center" style={{backgroundImage: "url('https://picsum.photos/seed/india-destinations-mountains/1920/1080')"}}>
           <div className="absolute inset-0 bg-black/60"></div>
           <div className="relative container mx-auto px-6 text-center text-white">
               <AnimatedWrapper>

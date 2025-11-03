@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Destination } from '../types';
 import { StarIcon } from './Icons';
+import { useAuth } from '../contexts/AuthContext';
 
 interface DestinationCardProps {
   destination: Destination;
@@ -9,8 +10,14 @@ interface DestinationCardProps {
 }
 
 const DestinationCard: React.FC<DestinationCardProps> = ({ destination, onCardClick, aiReason }) => {
+  const { isAuthenticated } = useAuth();
+
+  // Calculate discounted price for authenticated users (10% off)
+  const discountedPrice = isAuthenticated ? Math.round(destination.price * 0.9) : destination.price;
+  const originalPrice = destination.price;
+
   return (
-    <button 
+    <button
         onClick={() => onCardClick(destination)}
         className="bg-secondary rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-1 transition-all duration-300 group h-full flex flex-col text-left w-full focus:outline-none focus:ring-2 focus:ring-highlight focus:ring-offset-2 focus:ring-offset-primary"
         aria-label={`View details for ${destination.name}`}
@@ -21,19 +28,33 @@ const DestinationCard: React.FC<DestinationCardProps> = ({ destination, onCardCl
           alt={destination.name}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
-        {destination.originalPrice ? (
-            <div className="absolute top-0 right-0 m-4 text-right">
-                <span className="bg-highlight text-primary font-bold px-3 py-1 rounded-md text-sm shadow-lg">SALE</span>
-                <div className="mt-1 flex items-baseline justify-end gap-2 bg-primary/80 backdrop-blur-sm p-2 rounded-md">
-                    <span className="text-light/80 line-through text-md">₹{destination.originalPrice}</span>
-                    <span className="text-light font-bold text-xl">₹{destination.price}</span>
-                </div>
+
+        {/* Price Display */}
+        <div className="absolute top-0 right-0 m-4 text-right">
+          {isAuthenticated ? (
+            <div className="flex flex-col items-end gap-1">
+              <span className="bg-green-600 text-white font-bold px-3 py-1 rounded-md text-sm shadow-lg">
+                🎉 10% OFF
+              </span>
+              <div className="bg-primary/80 backdrop-blur-sm p-2 rounded-md">
+                <span className="text-light/80 line-through text-sm">₹{originalPrice}</span>
+                <div className="text-light font-bold text-xl">₹{discountedPrice}</div>
+              </div>
             </div>
-        ) : (
-            <div className="absolute top-0 right-0 bg-highlight text-primary font-bold px-3 py-1 m-4 rounded-md text-sm">
-                ₹{destination.price}
+          ) : destination.originalPrice ? (
+            <>
+              <span className="bg-highlight text-primary font-bold px-3 py-1 rounded-md text-sm shadow-lg">SALE</span>
+              <div className="mt-1 flex items-baseline justify-end gap-2 bg-primary/80 backdrop-blur-sm p-2 rounded-md">
+                <span className="text-light/80 line-through text-md">₹{destination.originalPrice}</span>
+                <span className="text-light font-bold text-xl">₹{destination.price}</span>
+              </div>
+            </>
+          ) : (
+            <div className="bg-highlight text-primary font-bold px-3 py-1 rounded-md text-sm">
+              ₹{destination.price}
             </div>
-        )}
+          )}
+        </div>
       </div>
       <div className="p-6 flex-grow flex flex-col">
         <div className="flex justify-between items-start">

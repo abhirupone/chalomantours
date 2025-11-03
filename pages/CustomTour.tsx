@@ -7,7 +7,7 @@ const CustomTour: React.FC = () => {
     return (
         <div className="min-h-screen bg-primary">
             {/* Page Header */}
-            <section className="relative py-24 md:py-32 bg-cover bg-center" style={{backgroundImage: "url('https://picsum.photos/seed/custom-tour-header/1920/1080')"}}>
+            <section className="relative py-24 md:py-32 bg-cover bg-center" style={{backgroundImage: "url('https://picsum.photos/seed/custom-india-journey/1920/1080')"}}>
                 <div className="absolute inset-0 bg-black/60"></div>
                 <div className="relative container mx-auto px-6 text-center text-white">
                     <AnimatedWrapper>

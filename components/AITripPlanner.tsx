@@ -31,7 +31,7 @@ const AITripPlanner: React.FC<AITripPlannerProps> = ({ onCardClick }) => {
             // FIX: Removed unnecessary 'as string' type assertion.
             const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
-            const systemInstruction = `You are an expert travel planner for Chaloman Tours. Your task is to analyze a user's travel request and recommend the most suitable destinations from a provided list. You must only return the IDs of the recommended destinations and a short, compelling reason for each. Your response must be in JSON format and adhere to the provided schema. Only suggest destinations from the list. If no destinations match, return an empty array for recommendations. Recommend at most 3 destinations.`;
+            const systemInstruction = `You are an expert travel planner for Chaloman Tours and Travels. Your task is to analyze a user's travel request and recommend the most suitable destinations from a provided list. You must only return the IDs of the recommended destinations and a short, compelling reason for each. Your response must be in JSON format and adhere to the provided schema. Only suggest destinations from the list. If no destinations match, return an empty array for recommendations. Recommend at most 3 destinations.`;
 
             const preferences = [];
             if (budget) preferences.push(`Budget: ${budget}`);

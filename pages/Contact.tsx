@@ -42,7 +42,7 @@ const Contact: React.FC = () => {
       const templateParams = {
         from_name: formData.name,
         from_email: formData.email,
-        subject: formData.subject || 'Contact Form Submission from Chaloman Tours',
+        subject: formData.subject || 'Contact Form Submission from Chaloman Tours and Travels',
         message: formData.message,
         to_email: 'chaloman@yahoo.com',
       };
@@ -178,7 +178,7 @@ const Contact: React.FC = () => {
                 </div>
               </div>
               <div className="h-64 bg-secondary rounded-lg overflow-hidden shadow-xl">
-                <img src="https://picsum.photos/seed/map/800/400" className="w-full h-full object-cover" alt="Map" />
+                <img src="https://picsum.photos/seed/india-map-destinations/800/400" className="w-full h-full object-cover" alt="India destinations map" />
               </div>
             </div>
           </div>

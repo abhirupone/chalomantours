@@ -47,7 +47,7 @@ const About: React.FC = () => {
         <div className="absolute inset-0 bg-black/60"></div>
         <div className="relative container mx-auto px-6 text-center text-white">
             <AnimatedWrapper>
-                <h1 className="text-5xl md:text-6xl font-bold font-serif">About Chaloman Tours</h1>
+                <h1 className="text-5xl md:text-6xl font-bold font-serif">About Chaloman Tours and Travels</h1>
                 <p className="mt-4 text-xl max-w-2xl mx-auto text-light">
                     We are passionate about showcasing India's incredible diversity, from ancient temples to modern cities, creating authentic experiences that connect you with India's rich heritage.
                 </p>
@@ -59,12 +59,12 @@ const About: React.FC = () => {
       <section className="container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <AnimatedWrapper>
-            <img src="https://picsum.photos/seed/about-story/800/600" alt="Team of travelers" className="rounded-lg shadow-2xl" />
+            <img src="https://picsum.photos/seed/india-travel-team/800/600" alt="Chaloman Tours and Travels team" className="rounded-lg shadow-2xl" />
           </AnimatedWrapper>
           <AnimatedWrapper delay="200ms">
             <h2 className="text-3xl font-bold font-serif mb-4">Our Story</h2>
             <p className="text-accent mb-4 leading-relaxed">
-              Founded in 2014 by travel enthusiasts with deep roots in India's diverse cultures, Chaloman Tours was born from a passion to share India's incredible heritage. We believed that experiencing India should be transformative - connecting travelers with ancient traditions, vibrant festivals, and the warmth of Indian hospitality.
+              Founded in 2014 by travel enthusiasts with deep roots in India's diverse cultures, Chaloman Tours and Travels was born from a passion to share India's incredible heritage. We believed that experiencing India should be transformative - connecting travelers with ancient traditions, vibrant festivals, and the warmth of Indian hospitality.
             </p>
             <p className="text-accent leading-relaxed">
               From our humble beginnings in Mumbai, we've grown into India's leading bespoke travel company, specializing in authentic experiences across the subcontinent. Our local expertise and deep cultural understanding ensure every journey tells the true story of Incredible India.
@@ -93,7 +93,7 @@ const About: React.FC = () => {
        <section className="container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
            <AnimatedWrapper delay="200ms" className="lg:order-2">
-            <img src="https://picsum.photos/seed/about-mission/800/600" alt="Compass" className="rounded-lg shadow-2xl" />
+            <img src="https://picsum.photos/seed/india-compass-spiritual/800/600" alt="Spiritual journey compass" className="rounded-lg shadow-2xl" />
           </AnimatedWrapper>
           <AnimatedWrapper className="lg:order-1">
             <h2 className="text-3xl font-bold font-serif mb-4">Our Mission</h2>
